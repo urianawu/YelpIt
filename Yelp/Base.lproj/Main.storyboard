@@ -9,8 +9,7 @@
         <!--Search-->
         <scene sceneID="9hN-Ef-eQ7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wlu-QT-qgl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="mTx-Di-XVj" sceneMemberID="viewController">
+                <viewController id="mTx-Di-XVj" customClass="SearchViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SZb-2s-ScH"/>
                         <viewControllerLayoutGuide type="bottom" id="WNf-9O-I6g"/>
@@ -65,10 +64,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="Gwx-CR-kxY">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="TBd-aT-sfK"/>
-                        <barButtonItem key="rightBarButtonItem" title="Search" id="vIv-wm-ign"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="TBd-aT-sfK">
+                            <connections>
+                                <action selector="onCancelButton:" destination="mTx-Di-XVj" id="Pk8-D4-qdl"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="vIv-wm-ign">
+                            <connections>
+                                <action selector="onSearchButton:" destination="mTx-Di-XVj" id="2X4-hs-hiz"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wlu-QT-qgl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2476" y="-327"/>
         </scene>
