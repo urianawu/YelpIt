@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="e.g tacos, chinese cuisine                           " translatesAutoresizingMaskIntoConstraints="NO" id="QSw-f4-iTK">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="e.g tacos, chinese cuisine                                         " translatesAutoresizingMaskIntoConstraints="NO" id="QSw-f4-iTK">
                                 <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             </searchBar>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Current Location                                          " translatesAutoresizingMaskIntoConstraints="NO" id="Fls-6u-GZD">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Current Location                                                        " translatesAutoresizingMaskIntoConstraints="NO" id="Fls-6u-GZD">
                                 <rect key="frame" x="0.0" y="108" width="320" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -30,20 +30,12 @@
                                 <rect key="frame" x="0.0" y="152" width="320" height="416"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="4Ng-Zy-JBD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" id="4Ng-Zy-JBD">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Ng-Zy-JBD" id="nb6-TH-Ltz">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHc-v7-Uss">
-                                                    <rect key="frame" x="8" y="11" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -51,6 +43,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="QSw-f4-iTK" firstAttribute="top" secondItem="SZb-2s-ScH" secondAttribute="bottom" id="5Wr-yG-TYZ"/>
                             <constraint firstAttribute="trailing" secondItem="QSw-f4-iTK" secondAttribute="trailing" id="712-y2-57Y"/>
                             <constraint firstAttribute="trailing" secondItem="Fls-6u-GZD" secondAttribute="trailing" id="9y0-gI-Kdg"/>
                             <constraint firstItem="bsj-AY-Ucm" firstAttribute="top" secondItem="Fls-6u-GZD" secondAttribute="bottom" id="B0Y-sA-6cm"/>
@@ -60,25 +53,29 @@
                             <constraint firstItem="QSw-f4-iTK" firstAttribute="leading" secondItem="IP2-4E-5Ne" secondAttribute="leading" id="gnG-rf-dYy"/>
                             <constraint firstAttribute="trailing" secondItem="bsj-AY-Ucm" secondAttribute="trailing" id="j77-6L-JvJ"/>
                             <constraint firstItem="Fls-6u-GZD" firstAttribute="top" secondItem="QSw-f4-iTK" secondAttribute="bottom" id="lun-cx-Wmv"/>
-                            <constraint firstItem="QSw-f4-iTK" firstAttribute="top" secondItem="SZb-2s-ScH" secondAttribute="bottom" id="nX8-px-cPT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="Gwx-CR-kxY">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="TBd-aT-sfK">
                             <connections>
-                                <action selector="onCancelButton:" destination="mTx-Di-XVj" id="Pk8-D4-qdl"/>
+                                <action selector="onCancelButton:" destination="mTx-Di-XVj" id="Gd9-D7-29v"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="vIv-wm-ign">
                             <connections>
-                                <action selector="onSearchButton:" destination="mTx-Di-XVj" id="2X4-hs-hiz"/>
+                                <action selector="onSearchButton:" destination="mTx-Di-XVj" id="K1p-EA-BgT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="locationSearchBar" destination="Fls-6u-GZD" id="qYb-Cf-Ehe"/>
+                        <outlet property="tableView" destination="bsj-AY-Ucm" id="i8M-7n-h2T"/>
+                        <outlet property="termSearchBar" destination="QSw-f4-iTK" id="1Cm-e0-JHH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wlu-QT-qgl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2476" y="-327"/>
+            <point key="canvasLocation" x="2456" y="-480"/>
         </scene>
         <!--Businesses View Controller-->
         <scene sceneID="5L9-Uz-lNK">
@@ -213,7 +210,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <state key="normal" image="icons/Search.png"/>
                             <connections>
-                                <segue destination="aTZ-ib-Oje" kind="modal" id="lnm-ZE-E5Q"/>
+                                <segue destination="tdq-bH-dRT" kind="modal" animates="NO" modalTransitionStyle="crossDissolve" id="MFz-Md-OzR"/>
                             </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" title="Map" id="6Jd-4N-3mr"/>
@@ -225,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgb-4b-F1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1485" y="338"/>
+            <point key="canvasLocation" x="1498" y="248"/>
         </scene>
         <!--Filters-->
         <scene sceneID="AZm-rc-Sv1">
@@ -301,7 +298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z0i-E1-QY4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2476" y="338"/>
+            <point key="canvasLocation" x="2399" y="248"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mXe-7n-y9n">
@@ -314,10 +311,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
+                        <outlet property="delegate" destination="6CW-eg-jtP" id="O3n-ER-lSx"/>
                         <segue destination="2xI-yr-O5N" kind="relationship" relationship="rootViewController" id="zNm-6k-D1b"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrh-fw-yNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="6CW-eg-jtP" customClass="SearchNavigationControllerDelegate" customModule="Yelp" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="953" y="338"/>
         </scene>
@@ -337,25 +336,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6eq-nx-b9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1944" y="338"/>
+            <point key="canvasLocation" x="1960" y="248"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="BHR-hr-n9o">
+        <scene sceneID="Bwj-SY-4CP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aTZ-ib-Oje" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tdq-bH-dRT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ohc-2G-v2k">
+                    <navigationItem key="navigationItem" id="ECK-LZ-98p"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u4n-vp-oIu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="mTx-Di-XVj" kind="relationship" relationship="rootViewController" id="RQ8-D1-FsF"/>
+                        <segue destination="mTx-Di-XVj" kind="relationship" relationship="rootViewController" id="jN8-TN-Uvd"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="coE-1h-D03" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YHR-3i-weC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1944" y="-327"/>
+            <point key="canvasLocation" x="1944" y="-444"/>
         </scene>
     </scenes>
     <resources>
