@@ -9,24 +9,38 @@
 import UIKit
 import AlgoliaSearch
 
+@objc protocol SearchViewControllerDelegate {
+    optional func searchViewController(searchViewController: SearchViewController, didUpdateSearch term: String)
+}
+
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var termSearchBar: UISearchBar!
-    @IBOutlet weak var locationSearchBar: UISearchBar!
+    
+    var termSearchBar = UISearchBar()
+    weak var delegate: SearchViewControllerDelegate?
     
     var index : Index!
     var searchSuggests = [String]()
     var defaultSuggests = [String]()
+    var searchTerm = String()
+    var searchLocation = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        termSearchBar.sizeToFit()
+        navigationItem.titleView = termSearchBar
         termSearchBar.becomeFirstResponder()
-        indexSearch()
+
         tableView.dataSource = self
         tableView.delegate = self
         termSearchBar.delegate = self
+        
+        indexSearch()
+
+        self.searchTerm = "Restaurants"
         
         //default suggestions
         defaultSuggests.append("Restaurants")
@@ -38,6 +52,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         defaultSuggests.append("Steakhouse")
         searchSuggests = defaultSuggests
         self.tableView.reloadData()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,6 +67,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             self.tableView.reloadData()
 
         } else {
+            self.searchTerm = searchText
             //do search query
             index.search(Query(query: searchText), block: { (content, error) -> Void in
                 if error == nil {
@@ -65,8 +82,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 }
             })
         }
-
-
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,13 +94,21 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.dequeueReusableCellWithIdentifier("SearchCell", forIndexPath: indexPath)
+        cell.selectionStyle = .None
+        self.searchTerm = searchSuggests[indexPath.row]
+        onSearchButton(cell)
+    }
+    
     @IBAction func onCancelButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func onSearchButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
-        
+        print("searching... \(self.searchTerm)")
+        delegate?.searchViewController?(self, didUpdateSearch: self.searchTerm)
     }
     
     func indexSearch() {

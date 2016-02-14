@@ -87,9 +87,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/AFNetworking.framework"
   install_framework "Pods/AlgoliaSearch.framework"
   install_framework "Pods/BDBOAuth1Manager.framework"
+  install_framework "Pods/MBProgressHUD.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/AFNetworking.framework"
   install_framework "Pods/AlgoliaSearch.framework"
   install_framework "Pods/BDBOAuth1Manager.framework"
+  install_framework "Pods/MBProgressHUD.framework"
 fi
