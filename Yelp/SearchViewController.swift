@@ -40,6 +40,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         indexSearch()
 
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let term = defaults.objectForKey("term") as? String{
+            self.searchTerm = term
+            termSearchBar.text = term
+        }
+
         self.searchTerm = "Restaurants"
         
         //default suggestions
@@ -108,6 +114,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func onSearchButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
         print("searching... \(self.searchTerm)")
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(self.searchTerm, forKey: "term")
+        defaults.synchronize()
+
         delegate?.searchViewController?(self, didUpdateSearch: self.searchTerm)
     }
     
